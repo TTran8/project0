@@ -1,0 +1,29 @@
+<a class="nav-link" routerLink="create"><button type="button" class="btn btn-secondary">Create Post</button></a>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Desc</th>
+      <th scope="col">Group</th>
+      <th scope="col">Handle</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allPost">
+      <th scope="row">{{item.title}}</th>
+      <th scope="row">{{item.author}}</th>
+      <th scope="row">{{item.desc}}</th>
+      <th scope="row">{{item.group}}</th>
+      <th scope="row">
+
+        <a class="nav-link" [routerLink]="['edit-post', item._id]"><button type="button"
+            class="btn btn-secondary">Edit</button></a>
+
+        <a class="nav-link"><button type="button" class="btn btn-secondary"
+            (click)="onDeletePost(item._id)">Delete</button></a>
+      </th>
+    </tr>
+  </tbody>
+</table>

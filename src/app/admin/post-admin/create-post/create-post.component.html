@@ -1,0 +1,91 @@
+<div class="addPostForm">
+  <h2>CREATE A NEW POST</h2>
+  <form [formGroup]="addPostForm" (submit)="onSubmit()">
+    <!-- <div class="mb-3">
+      <label class="form-label">Category Main</label>
+      <select name="" id="" class="form-control" formControlName="Category_main_id" [(ngModel)]="Category_mainSelected"
+        (ngModelChange)="onChange(Category_mainSelected)">
+        <option value="{{ item._id }}" *ngFor="let item of Category_main">{{
+          item.category_name }}</option>
+      </select>
+    </div> -->
+    <mat-form-field appearance="fill">
+      <mat-label>Category Main</mat-label>
+      <mat-select formControlName="Category_main_id" [(ngModel)]="Category_mainSelected"
+        (ngModelChange)="onChange(Category_mainSelected)">
+        <mat-option value="{{ item._id }}" *ngFor="let item of Category_main">{{
+          item.category_name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Category Parent</mat-label>
+      <mat-select formControlName="Category_parent_id" [(ngModel)]="Category_parentSelected">
+        <mat-option value="{{ item._id }}" *ngFor="let item of Category_parent">{{
+          item.category_name }}</mat-option>
+        <mat-optgroup *ngFor="let item of Category_parent">
+          <mat-option *ngFor="let itemLv2 of item.children" [value]="itemLv2._id">
+            {{itemLv2.category_name}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <div class="mb-3">
+      <label class="form-label">Category Parent</label>
+      <select name="" id="" class="form-control" formControlName="Category_parent_id"
+        [(ngModel)]="Category_parentSelected">
+        <option value="{{ item._id }}" *ngFor="let item of Category_parent">{{ item.category_name }}</option>
+        <optgroup *ngFor="let item of Category_parent">
+          <option value={{item._id}}>{{ item.category_name }}</option>
+
+        </optgroup>
+      </select>
+
+    </div> -->
+    <div class="mb-3">
+      <label class="form-label">New Post's title</label>
+      <input class="form-control" formControlName="title" type="text" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Author</label>
+      <input class="form-control" formControlName="author" type="text" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">ImgUrl</label>
+      <input class="form-control" formControlName="imgUrl" type="text" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Desc</label>
+      <editor formControlName="desc" apiKey="4454prg0ixwck2sdmxcta7wrz5eaoz9nx2asnx6rf2dsc80p" [init]="{
+                    height: 200,
+                    menubar: true,
+                    plugins: [
+                      'advlist autolink lists link image charmap print preview anchor',
+                      'searchreplace visualblocks code fullscreen',
+                      'insertdatetime media table paste code help wordcount'
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic backcolor | \
+                      alignleft aligncenter alignright alignjustify | \
+                      bullist numlist outdent indent | removeformat | help'
+                  }"></editor>
+    </div>
+    <label class="form-label">Post's content</label>
+    <editor formControlName="html" apiKey="4454prg0ixwck2sdmxcta7wrz5eaoz9nx2asnx6rf2dsc80p" [init]="{
+        height: 500,
+        menubar: true,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar:
+          'undo redo | formatselect | bold italic backcolor | \
+          alignleft aligncenter alignright alignjustify | \
+          bullist numlist outdent indent | removeformat | help'
+      }"></editor>
+    <button class="btn btn-primary my-3" type="submit" [disabled]="addPostForm.invalid">
+      Submit
+    </button>
+  </form>
+</div>

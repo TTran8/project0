@@ -1,0 +1,13 @@
+<div class="container">
+  <ng-container>
+    <div class="border-1 p-3">
+      <h1 class="mb-4">{{ post.title }} <a [routerLink]="['edit', post._id]">(Edit)</a></h1>
+      <div class="h-100">
+        <div [innerHTML]="post.html"></div>
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>

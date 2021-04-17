@@ -1,0 +1,25 @@
+<div class="border">
+  <h2 class="title col-lg-12">{{ "Bài Viết Mới" | uppercase }}</h2>
+  <div class="d-flex justify-content-center align-items-center border-bottom p-1" *ngFor="let item of newPost">
+    <div>
+      <img style="max-width: 100px;" src={{item.imgUrl}} alt="">
+    </div>
+    <div class="f-grow p-3 side-item">
+      <a [routerLink]="['/category/post', item._id]">{{item.title}}</a>
+    </div>
+
+  </div>
+  <div class="d-flex justify-content-end py-2 pr-3 readmore"><a href="#">Xem thêm ...</a></div>
+</div>
+<div class="border my-3 " *ngFor="let item of sideBarPost">
+  <h2 class="title col-lg-12">{{ item.category_name | uppercase }}</h2>
+  <div class="overflow-y">
+    <div class="d-flex justify-content-center align-items-center border-bottom p-1 " *ngFor="let item of item.children">
+      <div class="f-grow p-1 side-item">
+        <a [routerLink]="['/category/post', item._id]">{{item.title}}</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>

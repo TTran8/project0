@@ -1,0 +1,53 @@
+.header {
+  background-color: #2f6e91;
+}
+.inner {
+  height: 90px;
+}
+
+.search-bar {
+  margin-right: 16px;
+  background-color: #fff;
+}
+
+.search-bar button {
+  border: none;
+  background-color: #fff;
+}
+
+.search-bar input {
+  border: none;
+  width: 300px;
+  padding: 6px;
+  outline: none;
+}
+
+.social-bar a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.social-bar a:first-of-type:hover {
+  background-color: #3b5997;
+  color: #fff;
+}
+
+.social-bar a:nth-of-type(2):hover {
+  background-color: rgb(253, 5, 5);
+  color: #fff;
+}
+
+.social-bar a:nth-of-type(3):hover {
+  background-color: #00baf0;
+  color: #fff;
+}
+
+.social-bar a:last-of-type:hover {
+  background-color: #00b0f6;
+  color: #fff;
+}

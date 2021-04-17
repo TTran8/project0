@@ -1,0 +1,62 @@
+<div class="wrapper row">
+  <div class="form-wrapper d-flex col-6 justify-content-center">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Category: </mat-label>
+      <mat-select #mySelect [disabled]="true" [matMenuTriggerFor]="levelOne" [(ngModel)]="selectedClassification"
+        style="line-height: 1.8rem;text-indent: 0.8rem;" #levelOneTrigger="matMenuTrigger"
+        (click)="levelOneTrigger.openMenu()">
+        <mat-option value={{selectedClassification}}>{{selectedClassification}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-menu #levelOne="matMenu" direction="down" yPosition="below">
+      <ng-container *ngFor="let itemLv1 of category">
+        <ng-container>
+          <li mat-menu-item [matMenuTriggerFor]="levelTwo">
+            <span (click)="onDropdownItemSelected(itemLv1)"
+              [ngClass]="{'selectedMenu': itemLv1.category_name === selectedClassification}">{{itemLv1.category_name}}</span>
+          </li>
+          <mat-menu #levelTwo="matMenu">
+            <ng-container *ngFor="let itemLv2 of itemLv1.children">
+              <button mat-menu-item [matMenuTriggerFor]="levelThree" [value]="itemLv2.category_name"
+                (click)="onDropdownItemSelected(itemLv2)"
+                [ngClass]="{'selected': itemLv2.category_name === selectedClassification}">
+                {{itemLv2.category_name}}
+              </button>
+              <mat-menu #levelThree="matMenu">
+                <ng-container *ngFor="let itemLv3 of itemLv2.children">
+                  <button mat-menu-item [value]="itemLv3.category_name" (click)="onDropdownItemSelected(itemLv3)"
+                    [ngClass]="{'selectedMenu': itemLv3.category_name === selectedClassification}">
+                    {{itemLv3.category_name}}
+                  </button>
+                </ng-container>
+              </mat-menu>
+            </ng-container>
+          </mat-menu>
+        </ng-container>
+      </ng-container>
+    </mat-menu>
+  </div>
+  <div class="d-flex col-6 justify-content-center">
+    <div>
+      <mat-label>Category Detail: </mat-label>
+      <div *ngIf="categorySelected">
+        <div>
+          <h1><b>{{categorySelected.category_name}}</b></h1>
+        </div>
+        <div>
+          <h3>Action:</h3>
+          <button class="btn btn-secondary m-1" type="button" [routerLink]="['create', categorySelected._id]">Create
+            Sub
+          </button>
+          <button class="btn btn-primary m-1" type="button" [routerLink]="['edit-navbar', categorySelected._id]">Edit
+          </button>
+          <button class="btn btn-danger m-1" type="button" (click)="deleteCategory(categorySelected._id)">Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

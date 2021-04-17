@@ -1,0 +1,29 @@
+<div class="p-3 border mb-4">
+  <h1><strong>{{ nameCategory.category_name }}</strong></h1>
+  <p [innerHTML]="descHtml">
+  </p>
+  <div class="body">
+    <div class="d-flex flex-wrap">
+      <div class="col-6 item" *ngFor="let item of groupCategory">
+        <a class="d-flex textlink align-items-center" [routerLink]="['/category', item.category_name, item._id]">
+          <img style="max-width: 30px; max-height: 30px;" [src]="item.imgUrl" alt="" />
+          <p class="ml-3 text-decoration-none ">{{ item.category_name }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="title">{{ "bài viết" | uppercase }}</h2>
+
+<ng-container *ngFor="let post of postCategory">
+  <div class="card p-2" *ngFor="let post of post">
+    <a [routerLink]="['/category/post', post['_id']]" class="card-title">{{ post.title }}</a>
+
+    <div class="small">
+      <img [src]="post.imgUrl" class="card-img-top" alt="Web mien phi" />
+
+      <p class="ml-3">{{ post.desc }}</p>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,29 @@
+<ng-container>
+  <h2 class="title col-lg-12">{{ category_name | uppercase }}</h2>
+  <div style="height: 420px;" class="d-flex border">
+    <div class="col-5 p-0 border-right h-100" *ngIf="newPost">
+      <div class="h-100">
+        <div class="card-body">
+          <img [src]="newPost.imgUrl" class="card-img-top" alt="" />
+          <a [routerLink]="['/category/post', newPost._id]" class="card-title my-3 d-block">{{ newPost.title }}</a>
+          <p class="card-text">
+            {{ newPost.desc }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-7 p-0 h-100" *ngIf="subPosts">
+      <div style="height: 105px;" class="d-flex align-items-center border-bottom px-1 py-1"
+        *ngFor="let post of subPosts">
+        <img style="max-width: 90px;" [src]="post.imgUrl" class="card-img-top" alt="" />
+
+        <a [routerLink]="['/category/post', post._id]" class="ml-3">
+          {{ post.title }}
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <a [routerLink]="['/category', category_name]">Xem thêm <i class="fas fa-long-arrow-alt-right"></i></a>
+  </div>
+</ng-container>

@@ -1,0 +1,17 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Sign In </h2>
+
+    <!-- Login Form -->
+    <form [formGroup]="userLoginForm" (submit)="onLogin()">
+
+      <input type="text" id="login" class="fadeIn second" formControlName="username" name="login" placeholder="login">
+      <input class="fadeIn third" type="password" id="password" formControlName="password" name="login"
+        placeholder="password">
+      <input type="submit" class="fadeIn fourth" [disabled]="userLoginForm.invalid">
+
+    </form>
+
+  </div>
+</div>

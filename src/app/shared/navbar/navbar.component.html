@@ -1,0 +1,44 @@
+<nav>
+  <div class="container">
+    <ul>
+      <li class="dropdown">
+        <a routerLink="/"><i class="fas fa-home"></i></a>
+      </li>
+      <li class="dropdown">
+        <a>Lập trình</a>
+        <div class="dropdown-page">
+          <div class="row">
+            <div class="col" *ngFor="let child of laptrinh[0].children">
+              <a [routerLink]="['/category', child.category_name]"><strong>{{ child.category_name }}</strong></a>
+              <a *ngFor="let item of child.children" [routerLink]="['/category', item.category_name]">{{
+                item.category_name }}</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="dropdown" *ngFor="let item of anothers">
+        <a [routerLink]="['/category', item.category_name]">{{
+          item.category_name
+          }}</a>
+        <div class="dropdown-content">
+          <ng-container *ngFor="let i of item.children">
+            <a [routerLink]="['/category', i.category_name]">
+              {{ i.category_name }}
+            </a>
+          </ng-container>
+        </div>
+      </li>
+      <li class="dropdown" *ngFor="let item of more">
+        <a><i class="fas fa-bars"></i></a>
+        <div class="dropdown-content">
+          <ng-container *ngFor="let i of item.children">
+            <a [routerLink]="['/category', i.category_name]">
+              {{ i.category_name }}
+            </a>
+          </ng-container>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
